@@ -17,7 +17,7 @@ router.get('/home', (req,res) => {
 - Return all details from user.json file to client as JSON format
 */
 router.get('/profile', (req,res) => {
-  fs.readFile(`${__dirname}/user.json`, (err, data) => {
+  fs.readFile(`${__dirname}/user.json`, "utf8", (err, data) => {
     if (err) {
       console.log(`An error occurred while reading data from user.json: ${err}`);
       return;
