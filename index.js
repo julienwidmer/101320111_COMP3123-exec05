@@ -20,7 +20,7 @@ router.get('/profile', (req,res) => {
   fs.readFile(`${__dirname}/user.json`, "utf8", (err, data) => {
     if (err) {
       console.log(`An error occurred while reading data from user.json: ${err}`);
-      return;
+      res.send();
     } else {
       res.send(JSON.parse(data));
     }
@@ -73,10 +73,10 @@ router.get('/login', (req,res) => {
   const user = JSON.parse(jsonString);
 
   // Username is invalid
-  if (username != user.username) { res.send(usernameError); }
+  if (username !== user.username) { res.send(usernameError); }
 
   // Password is invalid
-  if (password != user.password) { res.send(passwordError); }
+  if (password !== user.password) { res.send(passwordError); }
 
   // Success
   res.send(success);
