@@ -1,4 +1,6 @@
 const express = require('express');
+const fs = require("fs");
+
 const app = express();
 const router = express.Router();
 
@@ -15,7 +17,14 @@ router.get('/home', (req,res) => {
 - Return all details from user.json file to client as JSON format
 */
 router.get('/profile', (req,res) => {
-  res.send('This is profile router');
+  fs.readFile(`${__dirname}/user.json`, (err, data) => {
+    if (err) {
+      console.log(`An error occurred while reading data from user.json: ${err}`);
+      return;
+    } else {
+      res.send(JSON.parse(data));
+    }
+  });
 });
 
 /*
