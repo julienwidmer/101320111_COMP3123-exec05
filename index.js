@@ -8,7 +8,7 @@ const router = express.Router();
 - Return home.html page to client
 */
 router.get('/home', (req,res) => {
-  res.send('This is home router');
+  res.sendFile(`${__dirname}/home.html`);
 });
 
 /*
