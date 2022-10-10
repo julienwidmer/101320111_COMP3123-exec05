@@ -46,8 +46,40 @@ router.get('/profile', (req,res) => {
         message: "Password is invalid"
     }
 */
+// http://localhost:8081/login?username=admin&password=1234
 router.get('/login', (req,res) => {
-  res.send('This is login router');
+  // Retriever values from query parameters
+  const username = req.query.username;
+  const password = req.query.password;
+
+  // Define responses
+  const success = {
+    status: true,
+    message: "User Is valid"
+  }
+
+  const usernameError = {
+    status: false,
+    message: "User Name is invalid"
+  }
+
+  const passwordError = {
+    status: false,
+    message: "Password is invalid"
+  }
+
+  // Retrieve user info from JSON file
+  const jsonString = fs.readFileSync(`${__dirname}/user.json`, "utf8");
+  const user = JSON.parse(jsonString);
+
+  // Username is invalid
+  if (username != user.username) { res.send(usernameError); }
+
+  // Password is invalid
+  if (password != user.password) { res.send(passwordError); }
+
+  // Success
+  res.send(success);
 });
 
 /*
