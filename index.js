@@ -1,3 +1,9 @@
+/*
+Course Code:    COMP3123
+Lab Exercise:   5
+Student Name:   Julien Widmer
+Student ID:     101320111
+*/
 const express = require('express');
 const fs = require("fs");
 
